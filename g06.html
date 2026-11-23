@@ -31,7 +31,7 @@
 </header>
 <main>
   <a href="view/g06.jpg"><img src="view/g06.jpg" alt="将棋の日"></a>
-  <p style="text-align:center;color:#767676;font-size:13px;margin:6px 0 0;">画像をタップすると拡大表示できます</p>
+  <p style="text-align:center;color:#767676;font-size:13px;margin:6px 0 0;">画像をタップすると拡大表示できます。左右にフリックしても移動できます</p>
   <a class="xbtn" href="https://x.com/aymlks/status/2122525400240718239">この投稿をXで見る（いいね・フォローはこちら）</a>
   <div class="nav">
     <a href="g05.html">← 前へ</a>
@@ -40,5 +40,29 @@
   <p class="back"><a href="gallery.html">1枚絵ギャラリーへ戻る</a></p>
 </main>
 <footer>© AYMLKS</footer>
+<script>
+(function(){
+  var links = document.querySelectorAll('.nav a');
+  var prev = null, next = null;
+  links.forEach(function(a){
+    if (a.classList.contains('off')) return;
+    if (a.textContent.indexOf('前へ') >= 0) prev = a.getAttribute('href');
+    if (a.textContent.indexOf('次へ') >= 0) next = a.getAttribute('href');
+  });
+  var sx = 0, sy = 0, tracking = false;
+  document.addEventListener('touchstart', function(e){
+    if (e.touches.length === 1) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; tracking = true; }
+  }, {passive:true});
+  document.addEventListener('touchend', function(e){
+    if (!tracking) return; tracking = false;
+    var dx = e.changedTouches[0].clientX - sx;
+    var dy = e.changedTouches[0].clientY - sy;
+    if (Math.abs(dx) >= 60 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      if (dx < 0 && next) location.href = next;
+      if (dx > 0 && prev) location.href = prev;
+    }
+  }, {passive:true});
+})();
+</script>
 </body>
 </html>
