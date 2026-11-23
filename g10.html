@@ -21,6 +21,10 @@
   .back { text-align:center; margin-top:20px; }
   .back a { color:#1a6fb5; }
   footer { text-align:center; color:#767676; font-size:13px; padding:20px; }
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.94);display:none;align-items:center;justify-content:center;z-index:50}
+.overlay.open{display:flex}
+.overlay img{max-width:100%;max-height:100%;object-fit:contain}
+.ovl-close{position:absolute;top:10px;right:14px;background:rgba(255,255,255,.18);color:#fff;border:none;font-size:26px;line-height:1;width:44px;height:44px;border-radius:50%}
 </style>
 </head>
 <body>
@@ -30,7 +34,8 @@
   <p class="date">2026-11-21</p>
 </header>
 <main>
-  <a href="view/g10.jpg"><img src="view/g10.jpg" alt="フライドチキンの日"></a>
+  <a class="zoom" href="view/g10.jpg"><img src="view/g10.jpg" alt="フライドチキンの日"></a>
+  <div class="overlay" id="ovl"><button class="ovl-close" type="button" aria-label="閉じる">×</button><img src="view/g10.jpg" alt=""></div>
   <p style="text-align:center;color:#767676;font-size:13px;margin:6px 0 0;">画像をタップすると拡大表示できます。左右にフリックしても移動できます</p>
   <a class="xbtn" href="https://x.com/aymlks/status/2123974957809975536">この投稿をXで見る（いいね・フォローはこちら）</a>
   <div class="nav">
@@ -62,6 +67,24 @@
       if (dx > 0 && prev) location.href = prev;
     }
   }, {passive:true});
+})();
+</script>
+<script>
+(function(){
+  var link = document.querySelector('a.zoom');
+  var ovl = document.getElementById('ovl');
+  if (!link || !ovl) return;
+  link.addEventListener('click', function(e){
+    e.preventDefault();
+    ovl.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+  ovl.addEventListener('click', function(e){
+    if (e.target.tagName !== 'IMG') {
+      ovl.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
 })();
 </script>
 </body>
