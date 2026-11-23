@@ -21,6 +21,8 @@
   .visually-hidden { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
   header p { margin:4px 0 0; color:#666; font-size:15px; }
   main { max-width:720px; margin:0 auto; padding:24px 20px 48px; }
+  nav.top { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; padding:14px 12px 0; }
+  nav.top a { background:#fff; border:1px solid #eee0bd; border-radius:999px; padding:7px 16px; color:#333; text-decoration:none; font-size:14px; font-weight:bold; }
   h2 { font-size:20px; border-left:6px solid #f2b705; padding-left:10px; margin:36px 0 14px; }
   .chars { display:grid; grid-template-columns:repeat(auto-fit,minmax(100px,1fr)); gap:10px; padding:0; list-style:none; }
   .chars li { background:#fff; border:1px solid #eee0bd; border-radius:12px; padding:12px 6px; text-align:center; font-weight:bold; }
@@ -46,6 +48,13 @@
   <h1 class="visually-hidden">今日も妙に平和です。</h1>
   <p>AIによる日常系4コマ漫画、Xで連載中！</p>
 </header>
+<nav class="top">
+  <a href="characters.html">登場人物</a>
+  <a href="#episodes">各話リンク集</a>
+  <a href="gallery.html">1枚絵ギャラリー</a>
+  <a href="https://x.com/aymlks">X（@aymlks）</a>
+  <a href="https://room.rakuten.co.jp/aymlks/items">楽天ROOM</a>
+</nav>
 <main>
   <section>
     <h2>AYMLKSについて</h2>
@@ -65,7 +74,7 @@
   </section>
 
   <section>
-    <h2>各話リンク集</h2>
+    <h2 id="episodes">各話リンク集</h2>
     <ul class="episodes">
       <li><a href="ep00.html"><img src="thumbs/ep00.jpg" alt="" loading="lazy"><span class="no">第0話</span>開幕のひとこと（特別編）</a></li>
       <li><a href="ep01.html"><img src="thumbs/ep01.jpg" alt="" loading="lazy"><span class="no">第1話</span>あみの自己紹介</a></li>
